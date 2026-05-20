@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Aim Trainer</title>
+    <style>
+        body { background: #020406; color: white; font-family: sans-serif; margin: 0; overflow: hidden; user-select: none; }
+        .score { position: absolute; top: 20px; left: 20px; font-size: 24px; color: #58a6ff; }
+        .target {
+            position: absolute; width: 40px; height: 40px; background: radial-gradient(circle, #f85149, transparent);
+            border: 2px solid #f85149; border-radius: 50%; cursor: crosshair;
+            box-shadow: 0 0 20px #f85149; transition: transform 0.1s ease;
+        }
+        .target:active { transform: scale(0.8); }
+    </style>
+</head>
+<body>
+<div class="score">Nishonlar: <span id="scoreVal">0</span></div>
+<div class="target" id="targetBtn"></div>
+<script>
+    let score = 0;
+    const target = document.getElementById('targetBtn');
+    const scoreVal = document.getElementById('scoreVal');
+    function moveTarget() {
+        const x = Math.random() * (window.innerWidth - 50);
+        const y = Math.random() * (window.innerHeight - 50);
+        target.style.left = x + 'px';
+        target.style.top = y + 'px';
+    }
+    target.addEventListener('mousedown', () => {
+        score++;
+        scoreVal.innerText = score;
+        moveTarget();
+    });
+    moveTarget();
+</script>
+</body>
+</html>
